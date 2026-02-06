@@ -1,6 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-gray-50;
+  font-family: "Comfortaa", cursive;
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -1,51 +1,17 @@
-import { useState } from "react";
 import DiaryInput from "../components/DiaryInput";
-import { Emotion } from "../types/emotion";
-import ResultCard from "../components/ResultCard";
-
-interface Result {
-  emotion: Emotion;
-  message: string;
-}
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<Result | null>(null);
-
-  const handleSubmit = (text: string) => {
-    console.log("입력된 텍스트:", text);
-
-    // 1️⃣ 분석 시작
-    setLoading(true);
-    setResult(null);
-
-    // 2️⃣ 지금은 AI 대신 fake 결과 (1초 후)
-    setTimeout(() => {
-      setResult({
-        emotion: "calm",
-        message: "오늘은 비교적 차분한 하루였어요.",
-      });
-      setLoading(false);
-    }, 1000);
-  };
-
   return (
-    <div className="min-h-screen p-6 bg-slate-50">
-      <h1 className="text-2xl font-bold text-center">Mood Canvas</h1>
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-100 to-yellow-100 flex flex-col items-center p-6">
+      <h1 className="text-4xl font-extrabold text-purple-800 mb-6 text-center">
+        Mood Canvas 🎨
+      </h1>
+      <p className="text-center text-purple-700 mb-8 max-w-md">
+        오늘 하루의 기분을 입력하면, AI가 당신의 감정을 분석하고 그에 맞는
+        그림을 만들어 줍니다.
+      </p>
 
-      <DiaryInput onSubmit={handleSubmit} />
-
-      {/* 로딩 상태 */}
-      {loading && (
-        <p className="mt-6 text-center text-slate-500">
-          AI가 감정을 분석하고 있어요…
-        </p>
-      )}
-
-      {/* 결과 상태 */}
-      {result && (
-        <ResultCard emotion={result.emotion} message={result.message} />
-      )}
+      <DiaryInput />
     </div>
   );
 }
